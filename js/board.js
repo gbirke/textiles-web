@@ -26,7 +26,7 @@ Board.prototype.getTurnsRemaining = function() {
 };
 
 /* return a "NSWEC" object with the adjacent Tiles.
- * "C" conatins the center tile (for which the position is given).
+ * "C" contains the center tile (for which the position is given).
  *  Board edges are represented as null.
  */
 Board.prototype.getAdjacentTiles = function( row, col ) {
