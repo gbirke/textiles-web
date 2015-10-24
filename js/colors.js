@@ -1,5 +1,5 @@
 module.exports = {
-	BLACK: 0,
+	// BLACK: 0,
 	RED: 1,
 	GREEN: 2,
 	BLUE: 3
