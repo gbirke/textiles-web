@@ -25,6 +25,10 @@ Board.prototype.getTurnsRemaining = function() {
 	return r;
 };
 
+Board.prototype.getSize = function () {
+	return this.width * this.height;
+}
+
 /* return a "NSWEC" object with the adjacent Tiles.
  * "C" contains the center tile (for which the position is given).
  *  Board edges are represented as null.

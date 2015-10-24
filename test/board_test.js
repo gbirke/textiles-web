@@ -15,6 +15,19 @@ describe( 'Board', function () {
 
 	} );
 
+	describe( '#getBoardSize', function () {
+
+		it( 'returns width times height as size', function () {
+			var b = new Board( 6, 6 );
+			expect( b.getSize() ).to.equal( 36 );
+			b = new Board( 9, 9 );
+			expect( b.getSize() ).to.equal( 81 );
+			b = new Board( 3, 4 );
+			expect( b.getSize() ).to.equal( 12 );
+		} );
+
+	} );	
+
 	describe( '#placeTile', function () {
 
 		it( 'reduces the number of turns', function () {

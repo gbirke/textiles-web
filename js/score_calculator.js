@@ -2,7 +2,7 @@ var directions = [ 'N', 'S', 'E', 'W' ];
 
 function ScoreCalculator( board ) {
 	this.board = board;
-	this.boardSize = board.height * board.width;
+	this.boardSize = board.getSize();
 }
 
 ScoreCalculator.prototype.scoreFor = function( row, col ) {
