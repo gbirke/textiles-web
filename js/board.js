@@ -23,15 +23,20 @@ Board.prototype.getTurnsRemaining = function() {
 	return r;
 };
 
-/* return a "NSWE" object with the adjacent Tiles. Board edges are represented as null */
+/* return a "NSWEC" object with the adjacent Tiles.
+ * "C" conatins the center tile (for which the position is given).
+ *  Board edges are represented as null.
+ */
 Board.prototype.getAdjacentTiles = function( row, col ) {
 	var adjacent = {
+		C: null,
 		N: null,
 		S: null,
 		W: null,
 		E: null
 	},
 	pos = row * this.height + col;
+	adjacent.C = this.tiles[ pos ];
 	if ( row > 0 ) {
 		adjacent.N = this.tiles[ pos - this.width ];
 	}

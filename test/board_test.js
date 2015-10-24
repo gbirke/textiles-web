@@ -38,11 +38,13 @@ describe( 'Board', function () {
 		var northTile = new Tile( Colors.RED, Shapes.SQUARE ),
 			southTile = new Tile( Colors.RED, Shapes.CIRCLE ),
 			westTile = new Tile( Colors.RED, Shapes.TRIANGLE ),
-			eastTile = new Tile( Colors.BLUE, Shapes.SQUARE);
+			eastTile = new Tile( Colors.BLUE, Shapes.SQUARE),
+			centerTile = new Tile( Colors.GREEN, Shapes.CIRCLE );
 
 		it( 'returns null for empty board', function () {
 			var b = new Board( 6, 6 );
-			expect( b.getAdjacentTiles() ).to.deep.equal({
+			expect( b.getAdjacentTiles( 1, 1 ) ).to.deep.equal({
+				C: null,
 				N: null,
 				S: null,
 				E: null,
@@ -52,11 +54,13 @@ describe( 'Board', function () {
 
 		it( 'returns adjacent elements', function () {
 			var b = new Board( 6, 6 );
+			b.placeTile( 1, 1, centerTile );
 			b.placeTile( 0, 1, northTile );
 			b.placeTile( 2, 1, southTile );
 			b.placeTile( 1, 0, westTile );
 			b.placeTile( 1, 2, eastTile );
 			expect( b.getAdjacentTiles( 1, 1 ) ).to.deep.equal({
+				C: centerTile,
 				N: northTile,
 				S: southTile,
 				W: westTile,
@@ -67,18 +71,21 @@ describe( 'Board', function () {
 		it( 'returns null on board corners', function () {
 			var b = new Board( 6, 6 );
 			// bottom right corner
+			b.placeTile( 5, 5, centerTile );
 			b.placeTile( 4, 5, northTile );
 			b.placeTile( 5, 4, westTile );
 			// top left corner
 			b.placeTile( 1, 0, southTile );
 			b.placeTile( 0, 1, eastTile );
 			expect( b.getAdjacentTiles( 0, 0 ) ).to.deep.equal({
+				C: null,
 				N: null,
 				S: southTile,
 				W: null,
 				E: eastTile
 			});
 			expect( b.getAdjacentTiles( 5, 5 ) ).to.deep.equal({
+				C: centerTile,
 				N: northTile,
 				S: null,
 				W: westTile,
