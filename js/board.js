@@ -13,6 +13,8 @@ Board.prototype.placeTile = function( row, col, tile ) {
 	if ( this.tiles[ pos ] !== null ) {
 		throw Error( 'Cell not empty' );
 	}
+	tile.row = row;
+	tile.col = col;
 	this.tiles[ pos ] = tile;
 };
 

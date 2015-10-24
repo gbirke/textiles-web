@@ -1,6 +1,8 @@
-function Tile( color, shape ) {
+function Tile( color, shape, row, col ) {
 	this.color = color;
 	this.shape = shape;
+	this.row = row;
+	this.col = col;
 }
 
 Tile.prototype.sameColor = function( tile ) {

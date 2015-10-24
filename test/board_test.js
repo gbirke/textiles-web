@@ -31,6 +31,14 @@ describe( 'Board', function () {
 			} ).to.throw( 'Cell not empty' );
 		} );
 
+		it( 'sets the position of the tile', function () {
+			var b = new Board( 6, 6 ),
+				tile = new Tile( );
+			b.placeTile( 1, 2, tile );
+			expect( tile.row ).to.equal( 1 );
+			expect( tile.col ).to.equal( 2 );
+		} );
+
 	} );
 
 	describe( '#getAdjacentTiles', function () {
