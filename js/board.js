@@ -11,6 +11,9 @@ function Board( width, height ) {
 
 Board.prototype.placeTile = function( row, col, tile ) {
 	var pos = row * this.height + col;
+	if ( this.tiles[ pos ] !== null ) {
+		throw Error( 'Cell not empty' );
+	}
 	this.tiles[ pos ] = tile;
 }
 

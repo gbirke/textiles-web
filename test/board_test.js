@@ -21,6 +21,14 @@ describe( 'Board', function () {
 			expect( b.getTurnsRemaining() ).to.equal( 35 );
 		} );
 
+		it( 'creates an error when cell is already full', function () {
+			var b = new Board( 6, 6 );
+			b.placeTile( 0, 0, new Tile() );
+			expect( function() {
+				b.placeTile( 0, 0, new Tile() );
+			} ).to.throw( 'Cell not empty' );
+		} );
+
 	} );
 
 } );
