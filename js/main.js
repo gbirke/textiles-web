@@ -1,19 +1,12 @@
-var Tile = require( './tile' ),
-	TileView = require( './views/tile' ),
+var TileStack = require( './tile_stack' ),
+	CardSelectionView = require( './views/card_selection' ),
 	Colors = require( './colors' ),
-	Shapes = require( './shapes' ),
+    Shapes = require( './shapes' ),
 	$ = require( 'jquery'),
 	eventEmitter = $({}),
-	dummyTile, parent = $('#displayContainer');
+	parent = $('#displayContainer'),
+	cardSelection, tileStack;
 
 
-
-dummyTile = new Tile( Colors.RED, Shapes.TRIANGLE );
-new TileView( dummyTile, parent, eventEmitter );
-
-
-dummyTile = new Tile( Colors.GREEN, Shapes.CIRCLE );
-new TileView( dummyTile, parent, eventEmitter );
-
-dummyTile = new Tile( Colors.BLUE, Shapes.SQUARE );
-new TileView( dummyTile, parent, eventEmitter );
+tileStack = new TileStack( Colors, Shapes, 36);
+cardSelection = new CardSelectionView( tileStack, parent, eventEmitter );

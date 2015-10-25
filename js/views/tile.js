@@ -4,25 +4,32 @@ var	$ = require( 'jquery'),
 	ColorStyles = {}, 
 	ShapeStyles = {};
 
-ColorStyles[ Colors.RED ] = "red";
-ColorStyles[ Colors.GREEN ] = "green";
-ColorStyles[ Colors.BLUE ] = "blue";
+ColorStyles[ Colors.RED ] = 'red';
+ColorStyles[ Colors.GREEN ] = 'green';
+ColorStyles[ Colors.BLUE ] = 'blue';
 
-ShapeStyles[ Shapes.SQUARE ] = "square";
-ShapeStyles[ Shapes.TRIANGLE ] = "triangle";
-ShapeStyles[ Shapes.CIRCLE ] = "circle";
+ShapeStyles[ Shapes.SQUARE ] = 'square';
+ShapeStyles[ Shapes.TRIANGLE ] = 'triangle';
+ShapeStyles[ Shapes.CIRCLE ] = 'circle';
 
 function TileView( tile, parent ) {
 	this.tile = tile;
-	this.$el = $( '<div class="tile"></div>');
+	this.$el = $( '<div class="tile"><div class="shape"></div></div>');
 	$( parent ).append( this.$el );
 	this.render();
 }
 
 TileView.prototype.render = function() {
-	this.$el.attr( 'class', 'tile'); // remove all classes
-	this.$el.addClass( ColorStyles[ this.tile.color ] );
-	this.$el.addClass( ShapeStyles[ this.tile.shape ] );
+	var shape = this.$el.find( '.shape' );
+	shape.attr( 'class', 'shape'); // remove all classes
+	shape.addClass( ColorStyles[ this.tile.color ] );
+	shape.addClass( ShapeStyles[ this.tile.shape ] );
+	shape.data( 'row', this.tile.row );
+	shape.data( 'col', this.tile.col );
+}
+
+TileView.prototype.select = function() {
+	this.$el.addClass( 'selected' );
 }
 
 module.exports = TileView;
