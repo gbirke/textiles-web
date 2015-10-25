@@ -28,7 +28,7 @@ function BoardView( board, parent, eventEmitter ) {
 		self.board.placeTile( tile.row, tile.col, self.tileToBePlaced );
 		self._renderTileAt( tile.row, tile.col, cell );
 		self.tileToBePlaced = null;
-		eventEmitter.trigger( 'textile:tilePlaced' );
+		eventEmitter.trigger( 'textile:tilePlaced', { tile: tile } );
 	} );
 
 	eventEmitter.on( 'textile:tileSelected', function ( evt, data ) {
