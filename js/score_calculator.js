@@ -10,13 +10,13 @@ ScoreCalculator.prototype.scoreFor = function( row, col ) {
 		centerTile = adjacentTilesToCheck.C,
 		shapeScore, colorScore;
 	this.tilesCounted = 0;
-	shapeScore = this._countShapeScore( centerTile, adjacentTilesToCheck, [ centerTile ], 1 );
+	shapeScore = this._countScore( centerTile, adjacentTilesToCheck, [ centerTile ], 1, "sameShape" );
 	this.tilesCounted = 0;
-	colorScore = this._countColorScore( centerTile, adjacentTilesToCheck, [ centerTile ], 1 );
+	colorScore = this._countScore( centerTile, adjacentTilesToCheck, [ centerTile ], 1, "sameColor" );
 	return shapeScore + colorScore;
 };
 
-ScoreCalculator.prototype._countShapeScore = function ( comparisonTile, adjacentTiles, countedTiles, score ) {
+ScoreCalculator.prototype._countScore = function ( comparisonTile, adjacentTiles, countedTiles, score, comparisonMethod ) {
 	var direction, currentTile, adjacentTilesToCheck;
 
 	// should never happen
@@ -30,39 +30,14 @@ ScoreCalculator.prototype._countShapeScore = function ( comparisonTile, adjacent
 			continue;
 		}
 		this.tilesCounted += 1;
-		if ( comparisonTile.sameShape( currentTile ) ) {
+		if ( comparisonTile[ comparisonMethod ]( currentTile ) ) {
 			score += 1;
 			countedTiles.push( currentTile );
 			adjacentTilesToCheck = this.board.getAdjacentTiles( currentTile.row, currentTile.col );
-			score = this._countShapeScore( comparisonTile, adjacentTilesToCheck, countedTiles, score );
+			score = this._countScore( comparisonTile, adjacentTilesToCheck, countedTiles, score, comparisonMethod );
 		}
 	}
 	return score;
 }
-
-ScoreCalculator.prototype._countColorScore = function ( comparisonTile, adjacentTiles, countedTiles, score ) {
-	var direction, currentTile, adjacentTilesToCheck;
-
-	// should never happen
-	if( this.tilesCounted > this.boardSize ) { 
-		throw Error( 'Recursion error, now you\'re in trouble' );
-	}
-
-	for ( direction in directions ) {
-		currentTile = adjacentTiles[ directions[ direction ] ];
-		if ( currentTile === null || countedTiles.indexOf( currentTile ) > -1 ) {
-			continue;
-		}
-		this.tilesCounted += 1;
-		if ( comparisonTile.sameColor( currentTile ) ) {
-			score += 1;
-			countedTiles.push( currentTile );
-			adjacentTilesToCheck = this.board.getAdjacentTiles( currentTile.row, currentTile.col );
-			score = this._countShapeScore( comparisonTile, adjacentTilesToCheck, countedTiles, score );
-		}
-	}
-	return score;
-}
-
 
 module.exports = ScoreCalculator;
