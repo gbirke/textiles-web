@@ -32,10 +32,10 @@ TileView.prototype.render = function() {
 	else {
 		shape.addClass( this.tile.type );
 	}
-}
+};
 
 TileView.prototype.select = function() {
 	this.$el.addClass( 'selected' );
-}
+};
 
 module.exports = TileView;

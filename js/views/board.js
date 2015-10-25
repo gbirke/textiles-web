@@ -48,13 +48,13 @@ BoardView.prototype.render = function() {
 		}
 		this.$el.append( currentRow );
 	}
-}
+};
 
 BoardView.prototype._renderTileAt = function ( row, col, parent ) {
 	var tileView;
 	parent.empty();
 	tileView = new TileView( this.board.getTileAt( row, col ), parent, this.eventEmitter );
 	parent.data( 'view', tileView );
-}
+};
 
 module.exports = BoardView;

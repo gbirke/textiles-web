@@ -23,6 +23,6 @@ function TileStack( colors, shapes, boardSize ) {
 
 TileStack.prototype.getNext = function () {
 	return this.tiles.shift();
-}
+};
 
 module.exports = TileStack;

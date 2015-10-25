@@ -22,7 +22,7 @@ function Game( eventEmitter ) {
 	eventEmitter.on( 'textile:tilePlaced', function ( evt, data ) {
 		var score = self.scoreCalculator.scoreFor( data.tile.row, data.tile.col );
 		self.players[ self.playerIndex ].addScore( score );
-		if ( self.board.getTurnsRemaining() == 0 ) {
+		if ( self.board.getTurnsRemaining() === 0 ) {
 			self.eventEmitter.trigger( 'textile:gameOver', self._getResult() );
 			return;
 		}
@@ -77,7 +77,7 @@ Game.prototype._getResult = function () {
 		winner: winner,
 		loser: loser
 	};
-}
+};
 
 
-module.exports = Game
+module.exports = Game;

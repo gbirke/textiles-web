@@ -84,7 +84,7 @@ describe( 'Board', function () {
 				i;
 			b.distributeBlackholes( 12 );
 			for ( i = 0; i < b.getSize(); i++ ) {
-				if ( b.tiles[ i ] == null ) {
+				if ( b.tiles[ i ] === null ) {
 					continue;
 				}
 				expect( b.tiles[ i ].type ).to.equal( 'blackhole' );

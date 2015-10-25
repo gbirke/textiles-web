@@ -19,4 +19,4 @@ BlackHole.prototype.constructor = BlackHole;
 module.exports = {
 	EmptyTile: EmptyTile,
 	BlackHole: BlackHole
-}
+};

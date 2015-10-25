@@ -47,6 +47,6 @@ ScoreCalculator.prototype._countScore = function ( comparisonTile, adjacentTiles
 		}
 	}
 	return score;
-}
+};
 
 module.exports = ScoreCalculator;

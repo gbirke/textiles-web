@@ -22,9 +22,8 @@ Board.prototype.placeTile = function( row, col, tile ) {
 
 Board.prototype.getTurnsRemaining = function() {
 	return this.tiles.reduce( function (prev, tile) { 
-		return tile == null ? prev + 1 : prev; 
+		return tile === null ? prev + 1 : prev; 
 	}, 0 );
-	return r;
 };
 
 Board.prototype.getSize = function () {
@@ -33,7 +32,7 @@ Board.prototype.getSize = function () {
 
 Board.prototype.getTileAt = function ( row, col ) {
 	var pos = row * this.height + col;
-	if ( this.tiles[ pos ] == null ) {
+	if ( this.tiles[ pos ] === null ) {
 		return new SpecialTiles.EmptyTile( row, col );
 	}
 	return this.tiles[ pos ];

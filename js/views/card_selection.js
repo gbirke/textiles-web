@@ -46,6 +46,6 @@ CardSelectionView.prototype._renderTileViews = function () {
 		this.col = 0;
 		self.tileViews[i] = new TileView( this, self.$el );
 	} );
-}
+};
 
 module.exports = CardSelectionView;

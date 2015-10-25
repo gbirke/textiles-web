@@ -4,4 +4,4 @@ module.exports = {
 	GREEN: 2,
 	BLUE: 3
 
-}
+};

@@ -3,4 +3,4 @@ module.exports = {
 	CIRCLE: 1,
 	TRIANGLE: 3,
 	SQUARE: 4
-}
+};
