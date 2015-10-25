@@ -3,6 +3,7 @@ function Tile( color, shape, row, col ) {
 	this.shape = shape;
 	this.row = row;
 	this.col = col;
+	this.type = 'default';
 }
 
 Tile.prototype.sameColor = function( tile ) {
