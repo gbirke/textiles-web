@@ -9,15 +9,30 @@
 
 .shape {
   background-size: 100% auto;
+  width: 100px;
+  height: 100px;
+}
+
+.shape.blackhole {
+  background-image: url( '../img/TexTile_Shapes__0000_X.png' );
+}
+
+.shape.red.square {
+  background-image: url( '../img/TexTile_Shapes__0004_PurpleSquare.png' );
 }
 
 .shape.red.circle {
-  background-image: url( '../img/TexTile_Shapes__0000_X.png' );
+  background-image: url( '../img/TexTile_Shapes__0005_PurpleCircle.png' );
+}
+
+.shape.red.triangle {
+  background-image: url( '../img/TexTile_Shapes__0006_PurpleTriangle.png' );
 }
 
 .shape.blue.square {
   background-image: url( '../img/TexTile_Shapes__0001_BlueSquare.png' );
 }
+
 .shape.blue.circle {
   background-image: url( '../img/TexTile_Shapes__0002_BlueCircle.png' );
 }
@@ -26,27 +41,18 @@
   background-image: url( '../img/TexTile_Shapes__0003_BlueTriangle.png' )
 }
 
-.shape.red.square {
-  background-image: url( '../img/TexTile_Shapes__0004_PurpleSquare.png' );
-}
-
-.shape.red.triangle {
-  background-image: url( '../img/TexTile_Shapes__0006_PurpleTriangle.png' );
-}
-
-.shape.green.circle {
+.shape.green.square {
   background-image: url( '../img/TexTile_Shapes__0007_GreenSquare.png' );
 }
+
 .shape.green.circle {
   background-image: url( '../img/TexTile_Shapes__0008_GreenCircle.png' );
 }
+
 .shape.green.triangle {
   background-image: url( '../img/TexTile_Shapes__0009_GreenTriangle.png' );
 }
 
-.shape.red.circle {
-  background-image: url( '../img/TexTile_Shapes__0005_PurpleCircle.png' );
-}
 
 #scoreContainer {
   padding: 20px 0;
