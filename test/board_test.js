@@ -54,6 +54,22 @@ describe( 'Board', function () {
 
 	} );
 
+	describe( '#getTileAt', function () {
+
+		it( 'returns null for empty board', function () {
+			var b = new Board( 6, 6 );
+			expect( b.getTileAt( 1, 1 ) ).to.equal( null );
+		} );
+
+		it( 'returns a tile', function () {
+			var b = new Board( 6, 6 ),
+				tile = new Tile( Colors.GREEN, Shapes.CIRCLE );
+			b.placeTile( 1, 1, tile )
+			expect( b.getTileAt( 1, 1 ) ).to.deep.equal( tile );
+		} );
+
+	} );
+
 	describe( '#getAdjacentTiles', function () {
 
 		var northTile = new Tile( Colors.RED, Shapes.SQUARE ),
@@ -64,13 +80,13 @@ describe( 'Board', function () {
 
 		it( 'returns null for empty board', function () {
 			var b = new Board( 6, 6 );
-			expect( b.getAdjacentTiles( 1, 1 ) ).to.deep.equal({
+			expect( b.getAdjacentTiles( 1, 1 ) ).to.deep.equal( {
 				C: null,
 				N: null,
 				S: null,
 				E: null,
 				W: null
-			});
+			} );
 		} );
 
 		it( 'returns adjacent elements', function () {
@@ -80,13 +96,13 @@ describe( 'Board', function () {
 			b.placeTile( 2, 1, southTile );
 			b.placeTile( 1, 0, westTile );
 			b.placeTile( 1, 2, eastTile );
-			expect( b.getAdjacentTiles( 1, 1 ) ).to.deep.equal({
+			expect( b.getAdjacentTiles( 1, 1 ) ).to.deep.equal( {
 				C: centerTile,
 				N: northTile,
 				S: southTile,
 				W: westTile,
 				E: eastTile
-			});
+			} );
 		} );
 
 		it( 'returns null on board corners', function () {
@@ -98,20 +114,20 @@ describe( 'Board', function () {
 			// top left corner
 			b.placeTile( 1, 0, southTile );
 			b.placeTile( 0, 1, eastTile );
-			expect( b.getAdjacentTiles( 0, 0 ) ).to.deep.equal({
+			expect( b.getAdjacentTiles( 0, 0 ) ).to.deep.equal( {
 				C: null,
 				N: null,
 				S: southTile,
 				W: null,
 				E: eastTile
-			});
-			expect( b.getAdjacentTiles( 5, 5 ) ).to.deep.equal({
+			} );
+			expect( b.getAdjacentTiles( 5, 5 ) ).to.deep.equal( {
 				C: centerTile,
 				N: northTile,
 				S: null,
 				W: westTile,
 				E: null
-			});
+			} );
 		} );
 
 	} );

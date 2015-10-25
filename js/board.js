@@ -29,6 +29,11 @@ Board.prototype.getSize = function () {
 	return this.width * this.height;
 }
 
+Board.prototype.getTileAt = function ( row, col ) {
+	var pos = row * this.height + col;
+	return this.tiles[ pos ];
+}
+
 /* return a "NSWEC" object with the adjacent Tiles.
  * "C" contains the center tile (for which the position is given).
  *  Board edges are represented as null.
