@@ -14,8 +14,8 @@ function Game( eventEmitter ) {
 		playerIndex: self.playerIndex
 	} );
 
-	eventEmitter.on( 'textile:tileWasPlaced', function () {
-		this.switchActivePlayer();
+	eventEmitter.on( 'textile:tilePlaced', function () {
+		self.switchActivePlayer();
 		eventEmitter.trigger( 'textile:activePlayerChanged', { 
 			playerName: self.getActivePlayer(),
 			playerIndex: self.playerIndex

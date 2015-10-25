@@ -47,6 +47,18 @@
   background: none;
 }
 
+#scoreContainer {
+  padding: 20px 0;
+}
+
+#scoreContainer .active {
+  font-weight: bold;
+}
+
+#scoreContainer .player {
+  font-size: 24px;
+}
+
 #boardContainer table {
   border-collapse: collapse;
 }
@@ -56,3 +68,4 @@
   width: 120px;
   border: solid 3px lightgrey;
 }
+
