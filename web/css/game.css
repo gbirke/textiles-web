@@ -7,44 +7,45 @@
   background: yellow;
 }
 
-.shape.red {
-  background:red;
-  border-bottom-color: red;
+.shape {
+  background-size: 100% auto;
 }
 
-.shape.blue {
-  background: blue;
-  border-bottom-color: blue;
+.shape.red.circle {
+  background-image: url( '../img/TexTile_Shapes__0000_X.png' );
 }
 
-.shape.green {
-  background: green;
-  border-bottom-color: green;
+.shape.blue.square {
+  background-image: url( '../img/TexTile_Shapes__0001_BlueSquare.png' );
+}
+.shape.blue.circle {
+  background-image: url( '../img/TexTile_Shapes__0002_BlueCircle.png' );
 }
 
-
-.shape.square {
-    width: 100px;
-    height: 100px;
-    border-bottom: none;
+.shape.blue.triangle {
+  background-image: url( '../img/TexTile_Shapes__0003_BlueTriangle.png' )
 }
 
-.shape.circle {
-  width: 100px;
-  height: 100px;
-  -moz-border-radius: 50px;
-  -webkit-border-radius: 50px;
-  border-radius: 50px;
+.shape.red.square {
+  background-image: url( '../img/TexTile_Shapes__0004_PurpleSquare.png' );
 }
 
-.shape.triangle {
-  width: 0;
-  height: 0;
-  border-left: 50px solid transparent;
-  border-right: 50px solid transparent;
-  border-bottom-width: 100px;
-  border-bottom-style: solid;
-  background: none;
+.shape.red.triangle {
+  background-image: url( '../img/TexTile_Shapes__0006_PurpleTriangle.png' );
+}
+
+.shape.green.circle {
+  background-image: url( '../img/TexTile_Shapes__0007_GreenSquare.png' );
+}
+.shape.green.circle {
+  background-image: url( '../img/TexTile_Shapes__0008_GreenCircle.png' );
+}
+.shape.green.triangle {
+  background-image: url( '../img/TexTile_Shapes__0009_GreenTriangle.png' );
+}
+
+.shape.red.circle {
+  background-image: url( '../img/TexTile_Shapes__0005_PurpleCircle.png' );
 }
 
 #scoreContainer {
