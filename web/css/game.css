@@ -47,3 +47,12 @@
   background: none;
 }
 
+#boardContainer table {
+  border-collapse: collapse;
+}
+
+#boardContainer td {
+  height: 120px;
+  width: 120px;
+  border: solid 3px lightgrey;
+}
