@@ -4,7 +4,7 @@ var TileStack = require( './tile_stack' ),
     Shapes = require( './shapes' ),
 	$ = require( 'jquery'),
 	eventEmitter = $({}),
-	parent = $('#displayContainer'),
+	parent = $('#cardSelectionContainer'),
 	cardSelection, tileStack;
 
 
