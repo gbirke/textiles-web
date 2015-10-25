@@ -8,11 +8,18 @@ function Game( eventEmitter ) {
 	this.init();
 	this.eventEmitter = eventEmitter;
 	this.players = [ 'Player 1', 'Player 2' ];
-	eventEmitter.trigger( 'textile:activePlayerChanged', { playerName: self.getActivePlayer() } );
+	this.playerIndex = 0;
+	eventEmitter.trigger( 'textile:activePlayerChanged', { 
+		playerName: self.getActivePlayer(),
+		playerIndex: self.playerIndex
+	} );
 
 	eventEmitter.on( 'textile:tileWasPlaced', function () {
 		this.switchActivePlayer();
-		eventEmitter.trigger( 'textile:activePlayerChanged', { playerName: self.getActivePlayer() } );
+		eventEmitter.trigger( 'textile:activePlayerChanged', { 
+			playerName: self.getActivePlayer(),
+			playerIndex: self.playerIndex
+		} );
 	} );
 }
 
@@ -22,13 +29,11 @@ Game.prototype.init = function() {
 }
 
 Game.prototype.getActivePlayer = function () {
-	return this.players[ 0 ];
+	return this.players[ this.playerIndex ];
 }
 
 Game.prototype.switchActivePlayer = function () {
-	var firstPlayer = this.players.shift();
-	this.players.push( firstPlayer );
-	return this;
+	this.playerIndex = this.playerIndex ? 0 : 1;
 }
 
 

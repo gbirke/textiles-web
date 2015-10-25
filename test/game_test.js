@@ -6,22 +6,27 @@ var expect = require( 'chai' ).expect,
 
 describe( 'Game', function () {
 
+	var eventEmitter = {
+		trigger: function () {},
+		on: function () {}
+	}
+
 	describe( '#init', function () {
 
 		it( 'creates a board', function () {
-			var game = new Game();
+			var game = new Game( eventEmitter );
 			expect( game.board ).to.be.not.null;
 			expect( game.board ).to.be.not.undefined;
 		} );
 
 		it( 'creates a tile stack', function () {
-			var game = new Game();
+			var game = new Game( eventEmitter );
 			expect( game.tileStack ).to.be.not.null;
 			expect( game.tileStack ).to.be.not.undefined;
 		} );
 
 		it( 'inits an active player', function () {
-			var game = new Game();
+			var game = new Game( eventEmitter );
 			expect( game.getActivePlayer() ).to.equal( 'Player 1' );
 		} );
 
@@ -30,7 +35,7 @@ describe( 'Game', function () {
 	describe( '#switchActivePlayer', function () {
 
 		it( 'switches between players', function () {
-			var game = new Game();
+			var game = new Game( eventEmitter );
 			expect( game.getActivePlayer() ).to.equal( 'Player 1' );
 			game.switchActivePlayer();
 			expect( game.getActivePlayer() ).to.equal( 'Player 2' );
