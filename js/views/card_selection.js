@@ -9,6 +9,8 @@ function CardSelectionView( tileStack, parent, eventEmitter ) {
 	this.selectedTileIndex = -1;
 	this.$el = $( '<div id="card-selection"></div>' );
 	$( parent ).append( this.$el );
+	this.render();
+
 	this.$el.on( 'click', '.tile', function ( evt ) {
 		if ( self.selectedTileIndex > -1 ) {
 			evt.preventDefault();
@@ -18,14 +20,19 @@ function CardSelectionView( tileStack, parent, eventEmitter ) {
 		self.tileViews[ self.selectedTileIndex ].select();
 		eventEmitter.trigger( 'textile:tileSelected', { tile: self.tiles[ self.selectedTileIndex ] } );
 	} );
+
 	eventEmitter.on( 'textile:tilePlaced', function () {
 		var newTile = self.tileStack.getNext(),
 			newTileView = new TileView( newTile, self.$el, eventEmitter );
+		newTile.row = self.selectedTileIndex;
+		newTile.col = 0;
+		newTileView.$el.find( '.shape' ).data( 'row', self.selectedTileIndex );
+		self.tileViews[ self.selectedTileIndex ].$el.replaceWith( newTileView.$el );
 		self.tiles.splice( self.selectedTileIndex, 1, newTile );
 		self.tileViews.splice( self.selectedTileIndex, 1, newTileView );
 		self.selectedTileIndex = -1;
 	} );
-	this.render();
+	
 }
 
 CardSelectionView.prototype.render = function () {
