@@ -30,8 +30,13 @@ function Game( eventEmitter ) {
 	} );
 }
 
+/*+
+ * Set up the game with standard parameters:
+ * 6 x 6 game board, 4 black holes, shuffled tile stack
+ */
 Game.prototype.init = function() {
 	this.board = new Board( 6, 6 );
+	this.board.distributeBlackholes( 4 );
 	this.tileStack = new TileStack( Colors, Shapes, this.board.getSize() );
 	this.scoreCalculator = new ScoreCalculator( this.board );
 }
