@@ -22,6 +22,10 @@ function Game( eventEmitter ) {
 	eventEmitter.on( 'textile:tilePlaced', function ( evt, data ) {
 		var score = self.scoreCalculator.scoreFor( data.tile.row, data.tile.col );
 		self.players[ self.playerIndex ].addScore( score );
+		if ( self.board.getTurnsRemaining() == 0 ) {
+			self.eventEmitter.trigger( 'textile:gameOver', self._getResult() );
+			return;
+		}
 		self.switchActivePlayer();
 		eventEmitter.trigger( 'textile:activePlayerChanged', { 
 			playerName: self.getActivePlayer(),
@@ -39,14 +43,40 @@ Game.prototype.init = function() {
 	this.board.distributeBlackholes( 4 );
 	this.tileStack = new TileStack( Colors, Shapes, this.board.getSize() );
 	this.scoreCalculator = new ScoreCalculator( this.board );
-}
+};
 
 Game.prototype.getActivePlayer = function () {
 	return this.players[ this.playerIndex ];
-}
+};
 
 Game.prototype.switchActivePlayer = function () {
 	this.playerIndex = this.playerIndex ? 0 : 1;
+};
+
+Game.prototype._getResult = function () {
+	var winner, loser;
+	if ( this.players[ 0 ].score == this.players[ 1 ].score ) {
+		return {
+			tie: true,
+			text: "It was a tie, everbody wins!",
+			winner: null,
+			loser: null
+		};
+	}
+	else if ( this.players[ 0 ].score > this.players[ 1 ].score ) {
+		winner = this.players[ 0 ];
+		loser = this.players[ 1 ];
+	}
+	else {
+		winner = this.players[ 1 ];
+		loser = this.players[ 0 ];
+	}
+	return {
+		tie: false,
+		text: winner.name + " wins with " + winner.score + " to " + loser.score + "points.",
+		winner: winner,
+		loser: loser
+	};
 }
 
 
