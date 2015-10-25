@@ -25,11 +25,13 @@ TileView.prototype.render = function() {
 	shape.data( 'row', this.tile.row );
 	shape.data( 'col', this.tile.col );
 
-	if ( this.tile.type == 'empty' ) {
-		return;
+	if ( this.tile.type == 'default' ) {
+		shape.addClass( ColorStyles[ this.tile.color ] );
+		shape.addClass( ShapeStyles[ this.tile.shape ] );
 	}
-	shape.addClass( ColorStyles[ this.tile.color ] );
-	shape.addClass( ShapeStyles[ this.tile.shape ] );
+	else {
+		shape.addClass( this.tile.type );
+	}
 }
 
 TileView.prototype.select = function() {
