@@ -5,17 +5,26 @@ function ScoreCalculator( board ) {
 	this.boardSize = board.getSize();
 }
 
+/*
+ * Calculate the socre for a position on the board 
+ */
 ScoreCalculator.prototype.scoreFor = function( row, col ) {
 	var adjacentTilesToCheck = this.board.getAdjacentTiles( row, col ),
 		centerTile = adjacentTilesToCheck.C,
 		shapeScore, colorScore;
 	this.tilesCounted = 0;
+	if ( !centerTile ) {
+		throw Error( 'You can\' get the score for empty board cells!' );
+	}
 	shapeScore = this._countScore( centerTile, adjacentTilesToCheck, [ centerTile ], 1, "sameShape" );
 	this.tilesCounted = 0;
 	colorScore = this._countScore( centerTile, adjacentTilesToCheck, [ centerTile ], 1, "sameColor" );
 	return shapeScore + colorScore;
 };
 
+/**
+ * Recursively calculate the score for the nort, south, west and east tiles
+ */
 ScoreCalculator.prototype._countScore = function ( comparisonTile, adjacentTiles, countedTiles, score, comparisonMethod ) {
 	var direction, currentTile, adjacentTilesToCheck;
 
