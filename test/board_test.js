@@ -56,9 +56,10 @@ describe( 'Board', function () {
 
 	describe( '#getTileAt', function () {
 
-		it( 'returns null for empty board', function () {
-			var b = new Board( 6, 6 );
-			expect( b.getTileAt( 1, 1 ) ).to.equal( null );
+		it( 'returns EmptyTile for empty board', function () {
+			var b = new Board( 6, 6 ),
+				checkTile = b.getTileAt( 1, 1 );
+			expect( checkTile.type ).to.equal( 'empty' );
 		} );
 
 		it( 'returns a tile', function () {

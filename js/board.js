@@ -1,3 +1,5 @@
+var SpecialTiles = require( './special_tiles' );
+
 function Board( width, height ) {
 	var i;
 	this.width = width;
@@ -31,6 +33,9 @@ Board.prototype.getSize = function () {
 
 Board.prototype.getTileAt = function ( row, col ) {
 	var pos = row * this.height + col;
+	if ( this.tiles[ pos ] == null ) {
+		return new SpecialTiles.EmptyTile( row, col );
+	}
 	return this.tiles[ pos ];
 }
 

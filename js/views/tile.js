@@ -22,10 +22,14 @@ function TileView( tile, parent ) {
 TileView.prototype.render = function() {
 	var shape = this.$el.find( '.shape' );
 	shape.attr( 'class', 'shape'); // remove all classes
-	shape.addClass( ColorStyles[ this.tile.color ] );
-	shape.addClass( ShapeStyles[ this.tile.shape ] );
 	shape.data( 'row', this.tile.row );
 	shape.data( 'col', this.tile.col );
+
+	if ( this.tile.type == 'empty' ) {
+		return;
+	}
+	shape.addClass( ColorStyles[ this.tile.color ] );
+	shape.addClass( ShapeStyles[ this.tile.shape ] );
 }
 
 TileView.prototype.select = function() {
