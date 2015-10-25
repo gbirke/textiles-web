@@ -65,8 +65,32 @@ describe( 'Board', function () {
 		it( 'returns a tile', function () {
 			var b = new Board( 6, 6 ),
 				tile = new Tile( Colors.GREEN, Shapes.CIRCLE );
-			b.placeTile( 1, 1, tile )
+			b.placeTile( 1, 1, tile );
 			expect( b.getTileAt( 1, 1 ) ).to.deep.equal( tile );
+		} );
+
+	} );
+
+	describe( '#distributeBlackholes', function () {
+
+		it( 'reduces the number of remaining turns', function () {
+			var b = new Board( 6, 6 );
+			b.distributeBlackholes( 4 );
+			expect( b.getTurnsRemaining() ).to.equal( 32 );
+		} );
+
+		it( 'places the black holes away from the edges', function () {
+			var b = new Board( 6, 6 ),
+				i;
+			b.distributeBlackholes( 12 );
+			for ( i = 0; i < b.getSize(); i++ ) {
+				if ( b.tiles[ i ] == null ) {
+					continue;
+				}
+				expect( b.tiles[ i ].type ).to.equal( 'blackhole' );
+				expect( b.tiles[ i ].row ).to.be.above( 0 ).and.to.be.below( 5 );
+				expect( b.tiles[ i ].col ).to.be.above( 0 ).and.to.be.below( 5 );
+			}
 		} );
 
 	} );

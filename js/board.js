@@ -29,7 +29,7 @@ Board.prototype.getTurnsRemaining = function() {
 
 Board.prototype.getSize = function () {
 	return this.width * this.height;
-}
+};
 
 Board.prototype.getTileAt = function ( row, col ) {
 	var pos = row * this.height + col;
@@ -37,7 +37,23 @@ Board.prototype.getTileAt = function ( row, col ) {
 		return new SpecialTiles.EmptyTile( row, col );
 	}
 	return this.tiles[ pos ];
-}
+};
+
+Board.prototype.distributeBlackholes = function ( numBlackHoles ) {
+	var i, row, col;
+	for ( i = 0; i < numBlackHoles; i++ ) {
+		// do not place at the edges, leftmost col=height-1, 
+		row = Math.floor( Math.random() * ( this.height - 2) + 1 ) ; 
+		col = Math.floor( Math.random() * ( this.width - 2 ) + 1 ) ;
+		
+		// Don't use tiles that are already occupied
+		if ( this.getTileAt( row, col ).type != 'empty' ) {
+			i--;
+			continue;
+		}
+		this.placeTile( row, col, new SpecialTiles.BlackHole( row, col ) );
+	}
+};
 
 /* return a "NSWEC" object with the adjacent Tiles.
  * "C" contains the center tile (for which the position is given).
@@ -66,6 +82,6 @@ Board.prototype.getAdjacentTiles = function( row, col ) {
 		adjacent.E = this.tiles[ pos + 1 ];	
 	}
 	return adjacent;
-}
+};
 
 module.exports = Board;
