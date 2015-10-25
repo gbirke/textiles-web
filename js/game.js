@@ -73,7 +73,7 @@ Game.prototype._getResult = function () {
 	}
 	return {
 		tie: false,
-		text: winner.name + " wins with " + winner.score + " to " + loser.score + "points.",
+		text: winner.name + " wins with " + winner.score + " to " + loser.score + " points.",
 		winner: winner,
 		loser: loser
 	};

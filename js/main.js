@@ -11,3 +11,7 @@ var Game = require( './game' ),
 cardSelection = new CardSelectionView( game.tileStack, $( '#cardSelectionContainer' ), eventEmitter );
 boardView = new BoardView( game.board, $( '#boardContainer' ), eventEmitter );
 new ScoreView( game, $( '#scoreContainer' ), eventEmitter );
+
+eventEmitter.on( 'textile:gameOver', function ( evt, data ) {
+	alert( data.text + "\nReload the page to play again" );
+} );
