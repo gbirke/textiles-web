@@ -1,12 +1,15 @@
 var TileStack = require( './tile_stack' ),
-	CardSelectionView = require( './views/card_selection' ),
+	Board = require( './board' ),
 	Colors = require( './colors' ),
     Shapes = require( './shapes' ),
-	$ = require( 'jquery'),
+    CardSelectionView = require( './views/card_selection' ),
+    BoardView = require( './views/board' ),
+	$ = require( 'jquery' ),
 	eventEmitter = $({}),
-	parent = $('#cardSelectionContainer'),
-	cardSelection, tileStack;
+	board = new Board( 6, 6 ),
+	cardSelection, tileStack, boardView;
 
 
-tileStack = new TileStack( Colors, Shapes, 36);
-cardSelection = new CardSelectionView( tileStack, parent, eventEmitter );
+tileStack = new TileStack( Colors, Shapes, board.getSize() );
+cardSelection = new CardSelectionView( tileStack, $( '#cardSelectionContainer' ), eventEmitter );
+boardView = new BoardView( board, $( '#boardContainer' ), eventEmitter );
